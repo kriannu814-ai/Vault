@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0d0d0d">
+  <meta name="description" content="Institutional field guides and financial models for Main Street business buyers.">
+  <title>WealthVerse — Books for Builders</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0d0d0d;
+      --panel: #151515;
+      --panel-raised: #1b1915;
+      --gold: #f59e0b;
+      --gold-light: #ffd27a;
+      --white: #fff;
+      --muted: #a3a3a3;
+      --line: #303030;
+      --green: #9bd6a7;
+      --radius: 18px;
+      --content: 1160px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--white);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    .wrap { width: min(var(--content), calc(100% - 40px)); margin-inline: auto; }
+    .topbar { border-bottom: 1px solid #242424; }
+    .nav {
+      min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    }
+    .brand { display: inline-flex; align-items: center; gap: 11px; text-decoration: none; font-weight: 800; letter-spacing: .13em; font-size: .88rem; }
+    .brand-mark {
+      width: 32px; height: 32px; display: grid; place-items: center; border: 1px solid #8e641d;
+      color: var(--gold-light); font-family: Georgia, serif; font-size: 1.2rem; transform: rotate(45deg);
+    }
+    .brand-mark span { transform: rotate(-45deg); }
+    .nav-links { display: flex; align-items: center; gap: 28px; color: var(--muted); font-size: .9rem; }
+    .nav-links a { text-decoration: none; transition: color .2s; }
+    .nav-links a:hover { color: var(--gold-light); }
+    .nav-cta { color: var(--gold-light) !important; border: 1px solid #755015; border-radius: 999px; padding: 9px 16px; }
+    .hero { padding: 76px 0 48px; text-align: center; }
+    .eyebrow { color: var(--gold-light); text-transform: uppercase; letter-spacing: .2em; font-size: .72rem; font-weight: 800; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { max-width: 850px; margin: 16px auto 18px; font: 500 clamp(2.5rem, 6vw, 4.8rem)/1.04 Georgia, "Times New Roman", serif; letter-spacing: -.045em; }
+    h1 em { color: var(--gold-light); font-style: normal; }
+    .hero-copy { max-width: 650px; margin: 0 auto; color: var(--muted); font-size: clamp(1rem, 2vw, 1.12rem); }
+    .hero-note { display: inline-flex; align-items: center; gap: 9px; margin-top: 27px; color: #d6d0c5; font-size: .82rem; }
+    .hero-note::before { content: ""; width: 7px; height: 7px; background: var(--gold); border-radius: 50%; box-shadow: 0 0 12px #f59e0b80; }
+    .section-head { text-align: center; margin: 36px 0 34px; }
+    .section-head h2 { font: 500 clamp(2rem, 4vw, 3rem)/1.1 Georgia, serif; margin: 10px 0; }
+    .section-head p { color: var(--muted); margin: 0; }
+    .pricing { display: grid; grid-template-columns: 1fr 1.08fr 1fr; gap: 20px; align-items: stretch; padding-bottom: 82px; }
+    .product-card {
+      position: relative; display: flex; flex-direction: column; min-width: 0; padding: 27px;
+      background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
+    }
+    .product-card.featured {
+      background: linear-gradient(160deg, #211b10 0%, #171512 42%, #151515 100%);
+      border: 1px solid #b77b1a; box-shadow: 0 0 0 1px #f59e0b22, 0 16px 55px #0008, 0 0 35px #f59e0b12;
+      padding: 31px; transform: translateY(-12px);
+    }
+    .recommend {
+      align-self: center; margin: -47px 0 23px; padding: 8px 13px; border-radius: 999px;
+      background: #f59e0b; color: #17110a; font-size: .67rem; font-weight: 900; letter-spacing: .07em;
+      text-align: center;
+    }
+    .product-kicker { color: var(--gold-light); font-size: .7rem; font-weight: 800; letter-spacing: .15em; text-transform: uppercase; }
+    .product-card h3 { min-height: 58px; margin: 8px 0 5px; font: 500 1.65rem/1.13 Georgia, serif; letter-spacing: -.02em; }
+    .price-line { display: flex; align-items: baseline; gap: 10px; margin: 12px 0 17px; }
+    .price { font-size: 2.5rem; line-height: 1; font-weight: 750; letter-spacing: -.06em; }
+    .was { color: #888; text-decoration: line-through; font-size: 1.05rem; }
+    .save { display: inline-block; margin-left: 2px; padding: 4px 8px; border-radius: 5px; background: #3a2b12; color: var(--gold-light); font-size: .7rem; font-weight: 850; letter-spacing: .04em; }
+    .cover-frame {
+      min-height: 205px; display: grid; place-items: center; overflow: hidden; margin: 0 0 20px;
+      border: 1px solid #333; border-radius: 12px; background: #101010;
+    }
+    .cover-frame img { display: block; width: 100%; height: 205px; object-fit: contain; padding: 12px; }
+    .image-placeholder { width: 100%; padding: 30px 15px; text-align: center; color: #d9c39c; }
+    .placeholder-book {
+      width: 76px; height: 112px; margin: 0 auto 13px; display: grid; place-items: center;
+      border: 1px solid #a87928; border-left: 7px solid #6e4b19; background: #101010;
+      box-shadow: 7px 8px 16px #0009; color: var(--gold-light); font: 1.4rem Georgia, serif;
+    }
+    .image-placeholder small { display: block; color: #8e8a82; font-size: .68rem; overflow-wrap: anywhere; }
+    .description { min-height: 73px; color: var(--muted); font-size: .9rem; }
+    .deliverables { list-style: none; padding: 0; margin: 8px 0 25px; display: grid; gap: 11px; color: #e5e5e5; font-size: .86rem; }
+    .deliverables li { display: flex; gap: 10px; align-items: flex-start; }
+    .check { color: var(--green); font-weight: 900; line-height: 1.45; }
+    .button {
+      display: flex; justify-content: center; align-items: center; gap: 9px; width: 100%; margin-top: auto;
+      min-height: 52px; padding: 13px 16px; border: 1px solid #e8a32f; border-radius: 9px;
+      background: var(--gold); color: #17110a; text-align: center; text-decoration: none;
+      font-size: .83rem; font-weight: 900; letter-spacing: .015em; transition: transform .2s, background .2s, box-shadow .2s;
+    }
+    .button:hover { background: #ffbd4d; transform: translateY(-2px); box-shadow: 0 8px 22px #f59e0b24; }
+    .button:focus-visible, a:focus-visible, summary:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+    .featured .button { min-height: 56px; }
+    .trust-strip { border-top: 1px solid #252525; border-bottom: 1px solid #252525; padding: 25px 0; }
+    .trust-items { display: flex; justify-content: center; flex-wrap: wrap; gap: 18px 44px; color: #c7c1b6; font-size: .82rem; }
+    .trust-items span { display: inline-flex; align-items: center; gap: 8px; }
+    .trust-items b { color: var(--gold-light); font-weight: 700; }
+    .faq-section { padding: 78px 0; }
+    .faq-wrap { max-width: 780px; margin: auto; }
+    .faq-wrap h2 { text-align: center; font: 500 clamp(2rem, 4vw, 2.8rem) Georgia, serif; margin-bottom: 28px; }
+    details { border-bottom: 1px solid #303030; padding: 18px 2px; }
+    summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; gap: 20px; font-weight: 650; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; color: var(--gold-light); font-size: 1.3rem; line-height: 1; }
+    details[open] summary::after { content: "−"; }
+    details p { margin: 13px 30px 0 0; color: var(--muted); font-size: .91rem; }
+    .disclaimer { margin-bottom: 70px; padding: 22px 24px; border: 1px solid #35302a; border-left: 3px solid #a97828; border-radius: 10px; background: #12110f; }
+    .disclaimer h2 { margin: 0 0 8px; color: #e7c68d; font-size: .9rem; letter-spacing: .08em; text-transform: uppercase; }
+    .disclaimer p { margin: 0; color: #a9a49b; font-size: .8rem; }
+    footer { border-top: 1px solid #252525; padding: 30px 0 38px; color: #858585; font-size: .78rem; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+    .footer-inner a { color: #c8b58f; text-decoration: none; }
+    .footer-inner a:hover { text-decoration: underline; }
+    .fineprint { margin-top: 13px; max-width: 760px; color: #666; }
+    @media (max-width: 900px) {
+      .pricing { grid-template-columns: 1fr 1fr; max-width: 760px; margin-inline: auto; }
+      .featured { grid-column: 1 / -1; grid-row: 1; width: min(100%, 570px); justify-self: center; transform: none !important; }
+      .recommend { margin-top: -47px; }
+    }
+    @media (max-width: 620px) {
+      .wrap { width: min(100% - 30px, var(--content)); }
+      .nav { min-height: 66px; }
+      .nav-links { gap: 14px; font-size: .8rem; }
+      .nav-links a:not(.nav-cta) { display: none; }
+      .nav-cta { padding: 8px 12px; }
+      .hero { padding: 58px 0 28px; }
+      .pricing { grid-template-columns: 1fr; gap: 17px; padding-bottom: 55px; max-width: 430px; }
+      .featured { grid-column: auto; grid-row: auto; width: 100%; }
+      .product-card, .product-card.featured { padding: 23px; }
+      .recommend { margin-top: -40px; margin-bottom: 20px; font-size: .61rem; }
+      .product-card h3 { min-height: 0; }
+      .description { min-height: 0; }
+      .trust-items { justify-content: flex-start; gap: 12px 22px; }
+      .faq-section { padding: 55px 0; }
+      .disclaimer { margin-bottom: 48px; padding: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap nav">
+      <a class="brand" href="#" aria-label="WealthVerse home">
+        <span class="brand-mark"><span>W</span></span><span>WEALTHVERSE</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#books">The Blueprints</a>
+        <a href="#faq">FAQ</a>
+        <a class="nav-cta" href="#books">Explore the collection</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero wrap">
+      <div class="eyebrow">Practical knowledge. Built for action.</div>
+      <h1>Don't Buy The Story. <em>Verify</em> The Numbers.</h1>
+      <p class="hero-copy">Institutional due-diligence checklists, verified operating margins, and execution blueprints for acquiring cash-flowing Main Street assets.</p>
+      <div class="hero-note">Instant digital access after checkout through Gumroad</div>
+    </section>
+
+    <section id="books" class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">The collection</div>
+        <h2>Choose your toolkit.</h2>
+        <p>Start with one manual or unlock the complete 4-part acquisition suite.</p>
+      </div>
+
+      <div class="pricing">
+        <!-- CARD 1: $19 STARTER -->
+        <article class="product-card">
+          <div class="product-kicker">BOOK ONE · AUDIT FRAMEWORK</div>
+          <h3>The Main Street Due-Diligence Checklist</h3>
+          <div class="price-line"><span class="price">$19</span></div>
+          <div class="cover-frame">
+            <img src="side-hustles-book.png" alt="The Main Street Due Diligence Checklist"
+                 onerror="this.hidden=true; this.nextElementSibling.hidden=false">
+            <div class="image-placeholder" hidden>
+              <div class="placeholder-book">DD</div>
+              <small>Image placeholder: side-hustles-book.png</small>
+            </div>
+          </div>
+          <p class="description">How to audit a cash-flowing small business and identify deal-breakers before signing anything.</p>
+          <ul class="deliverables">
+            <li><span class="check">✓</span><span>25-Point Comprehensive Deal Diligence</span></li>
+            <li><span class="check">✓</span><span>Three-Way Bank & Tax Reconciliation</span></li>
+            <li><span class="check">✓</span><span>Lease, UCC Liens & Legal Liability Audits</span></li>
+            <li><span class="check">✓</span><span>6-Page Institutional Blueprint · PDF</span></li>
+          </ul>
+          <a class="button checkout-link" data-product="sideHustles" href="https://kriannu.gumroad.com/l/sidehustles" target="_blank" rel="noopener noreferrer">GET THE GUIDE – $19 <span aria-hidden="true">→</span></a>
+        </article>
+
+        <!-- CARD 2: $47 FEATURED BUNDLE -->
+        <article class="product-card featured">
+          <div class="recommend">⭐ BEST VALUE – MOST RECOMMENDED</div>
+          <div class="product-kicker">THE COMPLETE OPERATOR'S SUITE</div>
+          <h3>The Operator's Vault</h3>
+          <div class="price-line">
+            <span class="price">$47</span>
+            <span class="was">$58</span>
+            <span class="save">SAVE $11</span>
+          </div>
+          <div class="cover-frame">
+            <img src="complete-set-books.png" alt="The Operator's Vault Complete Set"
+                 onerror="this.hidden=true; this.nextElementSibling.hidden=false">
+            <div class="image-placeholder" hidden>
+              <div class="placeholder-book">V</div>
+              <small>Image placeholder: complete-set-books.png</small>
+            </div>
+          </div>
+          <p class="description">Master the financial verification, operating margins, outreach scripts, and Day-1 takeover operations.</p>
+          <ul class="deliverables">
+            <li><span class="check">✓</span><span>The Main Street Due-Diligence Checklist (PDF)</span></li>
+            <li><span class="check">✓</span><span>The Cash-Flow & Operating Margins Manual (PDF)</span></li>
+            <li><span class="check">✓</span><span>BONUS 1: 30-Day Acquisition Playbook (14 Worksheets)</span></li>
+            <li><span class="check">✓</span><span>BONUS 2: Cold Outreach & Broker Scripts Vault</span></li>
+            <li><span class="check">✓</span><span>All 4 Modules (60+ Pages) in One Instant Download</span></li>
+          </ul>
+          <a class="button checkout-link" data-product="completeSet" href="https://kriannu.gumroad.com/l/vault" target="_blank" rel="noopener noreferrer">GET THE COMPLETE VAULT – $47 <span aria-hidden="true">→</span></a>
+        </article>
+
+        <!-- CARD 3: $39 CORE MANUAL -->
+        <article class="product-card">
+          <div class="product-kicker">BOOK TWO · OPERATING MODELS</div>
+          <h3>The Cash-Flow & Operating Margins Manual</h3>
+          <div class="price-line"><span class="price">$39</span></div>
+          <div class="cover-frame">
+            <img src="empires-book.png" alt="The Cash-Flow and Operating Margins Manual"
+                 onerror="this.hidden=true; this.nextElementSibling.hidden=false">
+            <div class="image-placeholder" hidden>
+              <div class="placeholder-book">CF</div>
+              <small>Image placeholder: empires-book.png</small>
+            </div>
+          </div>
+          <p class="description">Real financial breakdown and normalized monthly operating models of 8 unsexy businesses.</p>
+          <ul class="deliverables">
+            <li><span class="check">✓</span><span>Real Monthly P&Ls for 8 Cash-Flow Businesses</span></li>
+            <li><span class="check">✓</span><span>2026 Employer Taxes & Hidden Margin Traps</span></li>
+            <li><span class="check">✓</span><span>13-Week Cash-Flow Forecast & Liquidity Planning</span></li>
+            <li><span class="check">✓</span><span>10-Page Operational Manual · PDF</span></li>
+          </ul>
+          <a class="button checkout-link" data-product="empires" href="https://kriannu.gumroad.com/l/cashflow" target="_blank" rel="noopener noreferrer">GET THE MANUAL – $39 <span aria-hidden="true">→</span></a>
+        </article>
+      </div>
+    </section>
+
+    <section class="trust-strip" aria-label="Purchase information">
+      <div class="wrap trust-items">
+        <span><b>✓</b> Secure checkout via Gumroad</span>
+        <span><b>✓</b> Instant PDF Downloads</span>
+        <span><b>✓</b> Single-payment lifetime access</span>
+      </div>
+    </section>
+
+    <section id="faq" class="faq-section wrap">
+      <div class="faq-wrap">
+        <div class="eyebrow" style="text-align:center">Good to know</div>
+        <h2>Frequently asked questions</h2>
+        <details>
+          <summary>How do I receive my blueprints?</summary>
+          <p>Choose your preferred toolkit and complete checkout through its secure Gumroad page. You will get immediate access to download your PDF files on screen, along with an instant email receipt containing your download links.</p>
+        </details>
+        <details>
+          <summary>Are these physical books?</summary>
+          <p>No. These are institutional digital PDFs, complete with printable templates, trackers, and worksheets. No physical copy will be shipped.</p>
+        </details>
+        <details>
+          <summary>What is included in The Complete Operator's Vault?</summary>
+          <p>The Vault includes all 4 components: The Main Street Due-Diligence Checklist, The Cash-Flow & Operating Margins Manual, the 30-Day Acquisition Playbook (with 14 fillable worksheets), and the Cold Outreach & Broker Scripts Vault.</p>
+        </details>
+        <details>
+          <summary>Do these guides guarantee business success?</summary>
+          <p>No. These guides provide rigorous institutional frameworks and financial models for due diligence. Your results depend on your execution, capital, local market conditions, and professional legal/financial guidance.</p>
+        </details>
+        <details>
+          <summary>Who should I contact about an order?</summary>
+          <p>For payment, download, or access queries, use the support information provided directly on your Gumroad receipt.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="wrap disclaimer" aria-labelledby="disclaimer-title">
+      <h2 id="disclaimer-title">Important information</h2>
+      <p>All content is provided for general educational and informational purposes only. Nothing on this website or in these blueprints constitutes financial, investment, legal, tax, or professional accounting advice. No income, profit, or business outcome is promised or guaranteed. Business acquisitions involve capital risk; conduct your own independent research and consult qualified U.S. CPAs and attorneys before executing transactions.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-inner">
+        <span>© <span id="year"></span> WealthVerse. All rights reserved.</span>
+        <span><a href="#books">Blueprints</a> &nbsp;·&nbsp; <a href="#faq">FAQ</a></span>
+      </div>
+      <p class="fineprint">Gumroad is a third-party checkout provider. This website is not affiliated with or endorsed by Gumroad.</p>
+    </div>
+  </footer>
+
+  <script>
+    const GUMROAD_URLS = {
+      sideHustles: "https://kriannu.gumroad.com/l/sidehustles",
+      completeSet: "https://kriannu.gumroad.com/l/vault",
+      empires: "https://kriannu.gumroad.com/l/cashflow"
+    };
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    document.querySelectorAll(".checkout-link").forEach((link) => {
+      const productKey = link.dataset.product;
+      const checkoutUrl = GUMROAD_URLS[productKey];
+
+      if (checkoutUrl) {
+        link.href = checkoutUrl;
+      }
+    });
+  </script>
+</body>
+</html>
